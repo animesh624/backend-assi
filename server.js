@@ -3,9 +3,11 @@ const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+require("dotenv").config();
 app.use(cors());
 
-const url = 'mongodb+srv://animesh624d:animeshdon@cluster0.8bknpgp.mongodb.net/test';  //This is the path of mongoDB
+const url = process.env.DATABASE  //This is the path of mongoDB
+// const url = 'mongodb+srv://animesh624d:animeshdon@cluster0.8bknpgp.mongodb.net/test'
 const client = new MongoClient(url);  
 const database = 'newdb';
 
@@ -21,11 +23,8 @@ async function insert(){
 
     console.log(`${result1.insertedCount} documents were inserted into the collection`);
 }
-insert();
+// insert();
 console.log("hello");
-
-
-const port = 4000;
 
 app.get('/query1', async (req, res) => {
   try {
@@ -154,7 +153,9 @@ app.get('/query2', async (req, res) => {
       await client.close();
     }
   });
-  app.listen(4000, () => {
+  const port = process.env.PORT;
+  // const port=4000;
+  app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
   });
 
