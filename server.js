@@ -6,8 +6,8 @@ const app = express();
 require("dotenv").config();
 app.use(cors());
 
-const url = process.env.DATABASE  //This is the path of mongoDB
-// const url = 'mongodb+srv://animesh624d:animeshdon@cluster0.8bknpgp.mongodb.net/test'
+// const url = process.env.DATABASE  //This is the path of mongoDB
+const url = 'mongodb+srv://animesh624d:animeshdon@cluster0.8bknpgp.mongodb.net/test'
 const client = new MongoClient(url);  
 const database = 'newdb';
 
@@ -153,8 +153,8 @@ app.get('/query2', async (req, res) => {
       await client.close();
     }
   });
-  const port = process.env.PORT;
-  // const port=4000;
+  // const port = process.env.PORT;
+  const port=4000;
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
   });
